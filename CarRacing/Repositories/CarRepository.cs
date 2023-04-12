@@ -34,7 +34,7 @@ namespace CarRacing.Repositories
         public ICar FindBy(string property)
         {
             
-            if (cars.FirstOrDefault(c => c.VIN == property) == null)
+            if (cars.FirstOrDefault(c => c.VIN == property) != null)
             {
                 return cars.First(c => c.VIN == property);
             }
