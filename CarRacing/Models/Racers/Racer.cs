@@ -14,6 +14,13 @@ namespace CarRacing.Models.Racers
         private int drivingExperience;
         private ICar car;
 
+        public Racer(string username, string racingBehavior, int drivingExperience, ICar car)
+        {
+            Username = username;
+            RacingBehavior = racingBehavior;
+            DrivingExperience = drivingExperience;
+            Car = car;
+        }
         public string Username 
         { 
             get => username;
