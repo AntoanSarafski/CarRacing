@@ -15,6 +15,15 @@ namespace CarRacing.Models.Cars
         private double fuelAvailable;
         private double fuelConsumptionPerRace;
 
+        public Car(string make, string model, string vIN, int horsePower, double fuelAvailable, double fuelConsumptionPerRace)
+        {
+            Make = make;
+            Model = model;
+            VIN = vIN;
+            HorsePower = horsePower;
+            FuelAvailable = fuelAvailable;
+            FuelConsumptionPerRace = fuelConsumptionPerRace;
+        }
         public string Make
         {
             get => make;
