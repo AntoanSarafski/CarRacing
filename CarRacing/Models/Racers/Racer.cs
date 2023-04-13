@@ -73,16 +73,25 @@ namespace CarRacing.Models.Racers
             } 
         }
 
-        public bool IsAvailable()
-        {
-            // TODO
-            throw new NotImplementedException();
-        }
-
         public void Race()
         {
-            // TODO
-            throw new NotImplementedException();
+            if (typeof(Racer).Name == "ProfessionalRacer")
+            {
+                DrivingExperience += 10;
+            }
+            else { DrivingExperience += 5; }
         }
+
+
+        public bool IsAvailable()
+        {
+            if(Car.FuelAvailable > Car.FuelConsumptionPerRace)
+            {
+                return true;
+            }
+            return false;
+        }
+
+       
     }
 }
