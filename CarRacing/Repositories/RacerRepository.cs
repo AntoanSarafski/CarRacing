@@ -9,7 +9,7 @@ using System.Text;
 
 namespace CarRacing.Repositories
 {
-    public class RacerReposirory : IRepository<IRacer>
+    public class RacerRepository : IRepository<IRacer>
     {
         private readonly List<IRacer> racers;
 

@@ -17,8 +17,8 @@ namespace CarRacing.Models.Cars
 
         public override sealed void Drive()
         {
-            FuelAvailable -= FuelConsumptionPerRace;
-            HorsePower -= (int)Math.Round(HorsePower * 0.03);
+            base.Drive();
+            HorsePower = (int)Math.Round(HorsePower * 0.97);
         }
     }
 }

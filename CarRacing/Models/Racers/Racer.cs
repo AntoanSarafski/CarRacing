@@ -65,7 +65,7 @@ namespace CarRacing.Models.Racers
             get => car;
             private set
             {
-                if(car == null)
+                if(value == null)
                 {
                     throw new ArgumentException(ExceptionMessages.InvalidRacerCar);
                 }
@@ -73,13 +73,9 @@ namespace CarRacing.Models.Racers
             } 
         }
 
-        public void Race()
+        public virtual void Race()
         {
-            if (typeof(Racer).Name == "ProfessionalRacer")
-            {
-                DrivingExperience += 10;
-            }
-            else { DrivingExperience += 5; }
+            car.Drive();
         }
 
 
