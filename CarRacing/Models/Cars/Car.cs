@@ -19,7 +19,7 @@ namespace CarRacing.Models.Cars
         {
             Make = make;
             Model = model;
-            VIN = vIN;
+            this.VIN = VIN;
             HorsePower = horsePower;
             FuelAvailable = fuelAvailable;
             FuelConsumptionPerRace = fuelConsumptionPerRace;
