@@ -50,7 +50,7 @@ namespace CarRacing.Models.Racers
         public int DrivingExperience 
         { 
             get => drivingExperience;
-            private set
+            protected set
             {
                 if(value < 0 || value > 100)
                 {
@@ -81,13 +81,7 @@ namespace CarRacing.Models.Racers
 
         public bool IsAvailable()
         {
-            if(Car.FuelAvailable > Car.FuelConsumptionPerRace)
-            {
-                return true;
-            }
-            return false;
+            return car.FuelAvailable >= car.FuelConsumptionPerRace;
         }
-
-       
     }
 }
