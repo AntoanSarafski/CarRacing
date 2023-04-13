@@ -81,7 +81,7 @@ namespace CarRacing.Models.Racers
 
         public bool IsAvailable()
         {
-            return car.FuelAvailable >= car.FuelConsumptionPerRace;
+            return car.FuelAvailable >= car.FuelConsumptionPerRace; // CHECK THIS >= !!!
         }
     }
 }
