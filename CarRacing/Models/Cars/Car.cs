@@ -65,7 +65,7 @@ namespace CarRacing.Models.Cars
         public int HorsePower 
         {
             get => horsePower;
-            private set
+            protected set
             {   if(value < 0)
                 {
                     throw new ArgumentException(ExceptionMessages.InvalidCarHorsePower);
@@ -77,7 +77,7 @@ namespace CarRacing.Models.Cars
         public double FuelAvailable
         { 
             get => fuelAvailable;
-            private set
+            protected set
             {   
                 if(value < 0)
                 {
@@ -99,10 +99,9 @@ namespace CarRacing.Models.Cars
             }
         }
 
-        public void Drive()
+        public virtual void Drive()
         {
-            // TODO
-            throw new NotImplementedException();
+            FuelAvailable -= FuelConsumptionPerRace;
         }
     }
 }
