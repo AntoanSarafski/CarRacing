@@ -72,116 +72,25 @@ namespace CarRacing.Core
 
         public string BeginRace(string racerOneUsername, string racerTwoUsername)
         {
-            if(racers.Models.FirstOrDefault(r => r.Username == racerOneUsername) == null)
+            var racer1 = this.racers.FindBy(racerOneUsername);
+            if (racer1 == null)
             {
-                return String.Format(ExceptionMessages.RacerCannotBeFound, racerOneUsername);
+                throw new ArgumentException(String.Format(ExceptionMessages.RacerCannotBeFound, racerOneUsername));
             }
-            else if (racers.Models.FirstOrDefault(r => r.Username == racerTwoUsername) == null)
+
+            var racer2 = this.racers.FindBy(racerTwoUsername);
+            if (racer2 == null)
             {
-                return String.Format(ExceptionMessages.RacerCannotBeFound, racerTwoUsername);
+                throw new ArgumentException(String.Format(ExceptionMessages.RacerCannotBeFound, racerTwoUsername));
             }
-            else
-            {
-                ICar firstCar;
-                IRacer firstRacer;
-                ICar secondCar;
-                IRacer secondRacer;
 
-                if (racers.Models.First(r => r.Username == racerOneUsername).RacingBehavior == "agressive")
-                {
-                    if (racers.Models.First(r => r.Username == racerOneUsername).Car.GetType().Name == "SuperCar")
-                    {
-                        firstCar = new SuperCar(racers.Models.First(r => r.Username == racerOneUsername).Car.Make,
-                            racers.Models.First(r => r.Username == racerOneUsername).Car.Model,
-                             racers.Models.First(r => r.Username == racerOneUsername).Car.VIN,
-                              racers.Models.First(r => r.Username == racerOneUsername).Car.HorsePower);
-
-                        firstRacer = new StreetRacer(racerOneUsername, firstCar);
-                    }
-                    else
-                    {
-                        firstCar = new TunedCar(racers.Models.First(r => r.Username == racerOneUsername).Car.Make,
-                            racers.Models.First(r => r.Username == racerOneUsername).Car.Model,
-                             racers.Models.First(r => r.Username == racerOneUsername).Car.VIN,
-                              racers.Models.First(r => r.Username == racerOneUsername).Car.HorsePower);
-
-                        firstRacer = new StreetRacer(racerOneUsername, firstCar);
-                    }
-                }
-                else
-                {
-                    if (racers.Models.First(r => r.Username == racerOneUsername).Car.GetType().Name == "SuperCar")
-                    {
-                        firstCar = new SuperCar(racers.Models.First(r => r.Username == racerOneUsername).Car.Make,
-                            racers.Models.First(r => r.Username == racerOneUsername).Car.Model,
-                             racers.Models.First(r => r.Username == racerOneUsername).Car.VIN,
-                              racers.Models.First(r => r.Username == racerOneUsername).Car.HorsePower);
-
-                        firstRacer = new ProfessionalRacer(racerOneUsername, firstCar);
-                    }
-                    else
-                    {
-                        firstCar = new TunedCar(racers.Models.First(r => r.Username == racerOneUsername).Car.Make,
-                            racers.Models.First(r => r.Username == racerOneUsername).Car.Model,
-                             racers.Models.First(r => r.Username == racerOneUsername).Car.VIN,
-                              racers.Models.First(r => r.Username == racerOneUsername).Car.HorsePower);
-
-                        firstRacer = new ProfessionalRacer(racerOneUsername, firstCar);
-                    }
-                }
-
-                if (racers.Models.First(r => r.Username == racerTwoUsername).RacingBehavior == "agressive")
-                {
-                    if (racers.Models.First(r => r.Username == racerTwoUsername).Car.GetType().Name == "SuperCar")
-                    {
-                        secondCar = new SuperCar(racers.Models.First(r => r.Username == racerTwoUsername).Car.Make,
-                            racers.Models.First(r => r.Username == racerTwoUsername).Car.Model,
-                             racers.Models.First(r => r.Username == racerTwoUsername).Car.VIN,
-                              racers.Models.First(r => r.Username == racerTwoUsername).Car.HorsePower);
-
-                        secondRacer = new StreetRacer(racerTwoUsername, secondCar);
-                    }
-                    else
-                    {
-                        secondCar = new TunedCar(racers.Models.First(r => r.Username == racerTwoUsername).Car.Make,
-                            racers.Models.First(r => r.Username == racerTwoUsername).Car.Model,
-                             racers.Models.First(r => r.Username == racerTwoUsername).Car.VIN,
-                              racers.Models.First(r => r.Username == racerTwoUsername).Car.HorsePower);
-
-                        secondRacer = new StreetRacer(racerTwoUsername, secondCar);
-                    }
-                }
-                else
-                {
-                    if (racers.Models.First(r => r.Username == racerTwoUsername).Car.GetType().Name == "SuperCar")
-                    {
-                        secondCar = new SuperCar(racers.Models.First(r => r.Username == racerTwoUsername).Car.Make,
-                            racers.Models.First(r => r.Username == racerTwoUsername).Car.Model,
-                             racers.Models.First(r => r.Username == racerTwoUsername).Car.VIN,
-                              racers.Models.First(r => r.Username == racerTwoUsername).Car.HorsePower);
-
-                        secondRacer = new ProfessionalRacer(racerTwoUsername, secondCar);
-                    }
-                    else
-                    {
-                        secondCar = new TunedCar(racers.Models.First(r => r.Username == racerTwoUsername).Car.Make,
-                            racers.Models.First(r => r.Username == racerTwoUsername).Car.Model,
-                             racers.Models.First(r => r.Username == racerTwoUsername).Car.VIN,
-                              racers.Models.First(r => r.Username == racerTwoUsername).Car.HorsePower);
-
-                        secondRacer = new ProfessionalRacer(racerTwoUsername, secondCar);
-                    }
-                }
-
-
-                return map.StartRace(firstRacer, secondRacer);
-            }
+            return this.map.StartRace(racer1, racer2);
 
         }
 
         public string Report()
         {
-            var orderedRacers = racers.Models.OrderByDescending(r => r.DrivingExperience).OrderBy(r => r.Username);
+            var orderedRacers = racers.Models.OrderBy(r => r.Username).OrderByDescending(r => r.DrivingExperience);
 
             StringBuilder sb = new StringBuilder(); 
 

@@ -17,7 +17,7 @@ namespace CarRacing.Models.Racers
         public override void Race()
         {
             base.Race();
-            this.DrivingExperience += 5;
+            DrivingExperience += 5;
         }
     }
 }
