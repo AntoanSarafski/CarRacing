@@ -21,6 +21,7 @@ namespace CarRacing.Core
         private IMap map;
 
 
+
         public string AddCar(string type, string make, string model, string VIN, int horsePower)
         {
             if (type == "SuperCar")
