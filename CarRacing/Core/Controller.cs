@@ -20,7 +20,11 @@ namespace CarRacing.Core
         private RacerRepository racers;
         private IMap map;
 
-
+        public Controller()
+        {
+            cars = new CarRepository();
+            racers = new RacerRepository();
+        }
 
         public string AddCar(string type, string make, string model, string VIN, int horsePower)
         {

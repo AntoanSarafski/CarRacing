@@ -24,12 +24,14 @@ namespace CarRacing.Repositories
             {
                 throw new ArgumentException(ExceptionMessages.InvalidAddCarRepository);
             }
+            cars.Add(car);
         }
 
         public bool Remove(ICar car)
         {
-            if (cars.Remove(car))
+            if (cars.Contains(car))
             {
+                cars.Remove(car);
                 return true;
             }
             return false;
