@@ -88,7 +88,7 @@ namespace CarRacing.Models.Racers
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine($"{typeof(Racer).Name}: {Username}");
+            sb.AppendLine($"{GetType().Name}: {Username}");
             sb.AppendLine($"--Driving behavior: {RacingBehavior}");
             sb.AppendLine($"--Driving experience: {DrivingExperience}");
             sb.AppendLine($"--Car: {car.Make} {car.Model} ({car.VIN})");
