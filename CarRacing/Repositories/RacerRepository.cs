@@ -26,12 +26,14 @@ namespace CarRacing.Repositories
             {
                 throw new ArgumentException(ExceptionMessages.InvalidAddRacerRepository);
             }
+            racers.Add(racer);
         }
 
         public bool Remove(IRacer racer)
         {
-            if (racers.Remove(racer))
+            if (racers.Contains(racer))
             {
+                racers.Remove(racer);
                 return true;
             }
             return false;
