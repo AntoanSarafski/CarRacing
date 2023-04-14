@@ -1,6 +1,7 @@
 ﻿using CarRacing.Core.Contracts;
 using CarRacing.Models.Cars;
 using CarRacing.Models.Cars.Contracts;
+using CarRacing.Models.Maps;
 using CarRacing.Models.Maps.Contracts;
 using CarRacing.Models.Racers;
 using CarRacing.Models.Racers.Contracts;
@@ -24,6 +25,7 @@ namespace CarRacing.Core
         {
             cars = new CarRepository();
             racers = new RacerRepository();
+            map = new Map();
         }
 
         public string AddCar(string type, string make, string model, string VIN, int horsePower)
