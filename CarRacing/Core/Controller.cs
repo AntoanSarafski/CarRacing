@@ -181,7 +181,7 @@ namespace CarRacing.Core
 
         public string Report()
         {
-            throw new NotImplementedException();
+
         }
     }
 }
