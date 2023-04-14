@@ -181,7 +181,17 @@ namespace CarRacing.Core
 
         public string Report()
         {
+            var orderedRacers = racers.Models.OrderByDescending(r => r.DrivingExperience).OrderBy(r => r.Username);
 
+            StringBuilder sb = new StringBuilder(); 
+
+            foreach (var racer in orderedRacers)
+            {
+                sb.AppendLine(racer.ToString());
+                sb.AppendLine();
+            }
+
+            return sb.ToString().Trim();
         }
     }
 }
